@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HolyQuran</string>
+    <string name="title_activity_suras_list">SurasList</string>
+    <string name="title_activity_show_sura">ShowSura</string>
+</resources>
