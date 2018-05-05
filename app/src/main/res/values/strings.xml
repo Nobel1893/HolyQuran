@@ -2,4 +2,9 @@
     <string name="app_name">HolyQuran</string>
     <string name="title_activity_suras_list">SurasList</string>
     <string name="title_activity_show_sura">ShowSura</string>
+    <string name="title_activity_show_reciters">ShowReciters</string>
+    <string name="loading">Loading...</string>
+    <string name="please_wait">Please wait</string>
+    <string name="ok">ok</string>
+    <string name="title_activity_reciter_suras">ReciterSuras</string>
 </resources>

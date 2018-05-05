@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="route.com.holyquran">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +26,15 @@
             android:name=".ShowSura"
             android:label="@string/title_activity_show_sura"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AhadeethList"></activity>
+        <activity android:name=".AhadeethList" />
+        <activity
+            android:name=".ShowReciters"
+            android:label="@string/title_activity_show_reciters"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="route.com.ReciterSuras"
+            android:label="@string/title_activity_reciter_suras"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

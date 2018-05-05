@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,15 +25,31 @@ public class AhadeethList extends AppCompatActivity {
         setContentView(R.layout.activity_hadeath_list);
 
 
-
         recyclerView=findViewById(R.id.recyclerview);
 
         ArrayList<HadeethItem> Ahadeeth;
         Ahadeeth=ReadAhadeth();
         HadeethRecyclerAdapter adapter=new HadeethRecyclerAdapter(Ahadeeth);
         layoutManager=new LinearLayoutManager(this);
+
+        adapter.setOnItemClickListener(new HadeethRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                Toast.makeText(AhadeethList.this,"item clicked "+position,Toast.LENGTH_LONG).show();
+            }
+        });
+
+        adapter.setOnLikeClickListener(new HadeethRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+
+            }
+        });
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+
+
 
     }
 

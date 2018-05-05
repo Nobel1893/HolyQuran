@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import route.com.holyquran.Abstract.HadeethItem;
+import route.com.holyquran.Abstract.RecitersResponse;
 import route.com.holyquran.R;
 
 /**
@@ -18,30 +18,24 @@ import route.com.holyquran.R;
  * m.nabil.fci2015@gmail.com
  */
 
-public class HadeethRecyclerAdapter extends RecyclerView.Adapter <HadeethRecyclerAdapter.ViewHolder> {
+public class RecitersRecyclerAdapter extends RecyclerView.Adapter <RecitersRecyclerAdapter.ViewHolder> {
 
     ArrayList data;
 
     OnItemClickListener onItemClickListener;
-    OnItemClickListener onLikeClickListener;
-    OnItemClickListener onShareClickListener;
-
-    public void setOnLikeClickListener(OnItemClickListener onLikeClickListener) {
-        this.onLikeClickListener = onLikeClickListener;
-    }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public HadeethRecyclerAdapter(ArrayList data){
+    public RecitersRecyclerAdapter(ArrayList data){
         this.data=data;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView itemView =(CardView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_item_verse, parent, false);
+                .inflate(R.layout.card_item_reciter, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -49,8 +43,8 @@ public class HadeethRecyclerAdapter extends RecyclerView.Adapter <HadeethRecycle
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        HadeethItem item=(HadeethItem) data.get(position);
-        holder.name.setText(item.getHadeethLines().get(0));
+        RecitersResponse.RecitersEntity item=(RecitersResponse.RecitersEntity) data.get(position);
+        holder.name.setText(item.getName());
 
 
         holder.cv.setOnClickListener(new View.OnClickListener() {

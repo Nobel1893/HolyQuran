@@ -5,11 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import route.com.holyquran.Abstract.HadeethItem;
+import route.com.holyquran.MyData;
 import route.com.holyquran.R;
 
 /**
@@ -18,30 +19,29 @@ import route.com.holyquran.R;
  * m.nabil.fci2015@gmail.com
  */
 
-public class HadeethRecyclerAdapter extends RecyclerView.Adapter <HadeethRecyclerAdapter.ViewHolder> {
+public class ReciterSurasRecyclerAdapter extends RecyclerView.Adapter <ReciterSurasRecyclerAdapter.ViewHolder> {
 
     ArrayList data;
 
-    OnItemClickListener onItemClickListener;
-    OnItemClickListener onLikeClickListener;
-    OnItemClickListener onShareClickListener;
+    OnItemClickListener onPlayClick;
+    OnItemClickListener onStopClick;
 
-    public void setOnLikeClickListener(OnItemClickListener onLikeClickListener) {
-        this.onLikeClickListener = onLikeClickListener;
+    public void setOnPlayClick(OnItemClickListener onPlayClick) {
+        this.onPlayClick = onPlayClick;
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public void setOnStopClick(OnItemClickListener onStopClick) {
+        this.onStopClick = onStopClick;
     }
 
-    public HadeethRecyclerAdapter(ArrayList data){
+    public ReciterSurasRecyclerAdapter(ArrayList data){
         this.data=data;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView itemView =(CardView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_item_verse, parent, false);
+                .inflate(R.layout.card_item_play_sura, parent, false);
 
         return new ViewHolder(itemView);
     }
@@ -49,19 +49,23 @@ public class HadeethRecyclerAdapter extends RecyclerView.Adapter <HadeethRecycle
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        HadeethItem item=(HadeethItem) data.get(position);
-        holder.name.setText(item.getHadeethLines().get(0));
-
-
-        holder.cv.setOnClickListener(new View.OnClickListener() {
+        int item=(int) data.get(position);
+        holder.name.setText(MyData.ArSuras[item-1]);
+        holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (onItemClickListener!=null)
-                    onItemClickListener.OnItemClick(position);
+                if (onPlayClick!=null)
+                    onPlayClick.OnItemClick(position);
             }
         });
 
+        holder.stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onStopClick!=null)
+                    onStopClick.OnItemClick(position);
+            }
+        });
     }
 
     @Override
@@ -79,11 +83,14 @@ public class HadeethRecyclerAdapter extends RecyclerView.Adapter <HadeethRecycle
 
         CardView cv;
         TextView name;
+        Button play,stop;
 
         public ViewHolder(CardView cv){
             super(cv);
             this.cv=cv;
             name=cv.findViewById(R.id.name);
+            play=cv.findViewById(R.id.play);
+            stop=cv.findViewById(R.id.stop);
 
         }
     }
